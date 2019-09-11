@@ -1,0 +1,58 @@
+.container {
+  padding: 0px 25px;
+}
+.header-container {
+  padding: 10px 0px;
+}
+
+.data-table-wrapper {
+  overflow: auto;
+}
+
+.dropdown-menu {
+  overflow: auto;
+  max-height: 165px;
+}
+
+.data-table-title-bar {
+  padding: 0;
+}
+
+.record-card {
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+.record-card-row {
+  margin: 20px 0px;
+}
+
+.record-card-header-title {
+  padding: 0px 20px;
+  margin: 0;
+}
+
+.record-card-data-row {
+  align-items: center;
+}
+
+.record-card-data-row-col {
+  padding: 0;
+}
+
+.record-card-data-feature-label {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.record-card-data-value-input {
+  font-size: 16px;
+  background: transparent;
+  border: transparent;
+  border-bottom: 1px solid grey;
+}
+
+.update-record-button {
+  padding: 20px;
+}
