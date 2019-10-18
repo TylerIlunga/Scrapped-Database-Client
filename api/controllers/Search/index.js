@@ -47,23 +47,34 @@ const initEval = (query, queryFeatures, body, bodyFeatures, res) => {
 module.exports = {
   init(req, res) {
     connection
-      .query(config.queries.getAllTables)
+      .query(config.queries.getAllTablesAndColumns)
       .then(([results, metadata]) => {
-        let tables = results.map(result => {
-          let tableLabel = result.table_name;
-          if (config.tables[tableLabel]) {
-            let table = {};
-            table['label'] = Utilities.capitalize(tableLabel).slice(
-              0,
-              tableLabel.length - 1,
-            );
-            table['columns'] = {
-              list: config.tables[tableLabel].columns,
-              selectedColumn: null,
+        let tables = [];
+        let models = {};
+        results.forEach(result => {
+          let { table_name, column_name } = result;
+          const snakeRegex = '[a-z]*_[a-z]*';
+
+          table_name = table_name.match(snakeRegex)
+            ? Utilities.capitalize(Utilities.snakeToCamel(table_name))
+            : Utilities.capitalize(table_name);
+          table_name = table_name.slice(0, table_name.length - 1);
+
+          if (!models[table_name]) {
+            models[table_name] = {
+              label: table_name,
+              columns: {
+                list: [column_name],
+                selectedColumn: null,
+              },
+              selected: false,
             };
-            table['selected'] = false;
-            return table;
+          } else {
+            models[table_name].columns.list.push(column_name);
           }
+        });
+        Object.keys(models).forEach(model => {
+          tables.push(models[model]);
         });
         return res.json({ tables });
       });
