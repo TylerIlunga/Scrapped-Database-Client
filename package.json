@@ -30,7 +30,7 @@
   "scripts": {
     "s-dev": "nodemon ./api/server",
     "c-dev": "react-scripts start",
-    "prod": "npm run build && node ./api/server",
+    "start": "npm run build && node ./api/server",
     "build": "react-scripts build",
     "clean": "rm -rf ./build"
   },

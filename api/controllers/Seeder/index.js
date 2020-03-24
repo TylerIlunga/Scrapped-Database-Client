@@ -44,7 +44,7 @@ module.exports = {
     if (!model) return res.json({ error: 'Table does not exist...' });
 
     let creationPromises = [];
-    for (let i = 0; i <= entryCount; i++) {
+    for (let i = 0; i < entryCount; i++) {
       creationPromises.push(
         model.create(storedRecordBasedOnTable(table, testName, i + 1)),
       );
